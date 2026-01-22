@@ -1,24 +1,8 @@
 const form = document.getElementById("testForm");
 const result = document.getElementById("result");
-const addWebsiteBtn = document.getElementById("addWebsite");
-const websitesWrap = document.getElementById("websitesWrap");
 
 const successMessage = document.getElementById("successMessage");
 const submitAnotherBtn = document.getElementById("submitAnother");
-
-let websiteCount = 1;
-
-// Add new website input
-addWebsiteBtn.addEventListener("click", () => {
-  websiteCount += 1;
-  const div = document.createElement("div");
-  div.className = "field website-item";
-  div.innerHTML = `
-    <label for="website_${websiteCount}">Website ${websiteCount}</label>
-    <input id="website_${websiteCount}" name="websites[]" type="url" placeholder="https://linkedin.com/in/..." />
-  `;
-  websitesWrap.appendChild(div);
-});
 
 function setError(name, msg) {
   const el = document.querySelector(`[data-error-for="${name}"]`);
@@ -51,8 +35,6 @@ form.addEventListener("submit", (e) => {
   if (!ok) return;
 
   // Build JSON (demo output)
-  const websites = data.getAll("websites[]").map(x => x.toString().trim()).filter(Boolean);
-
   const output = {
     full_name,
     email,
@@ -60,14 +42,6 @@ form.addEventListener("submit", (e) => {
     city: (data.get("city") || "").toString().trim(),
     degree: (data.get("degree") || "").toString().trim(),
     birthday: (data.get("birthday") || "").toString().trim(),
-    websites,
-    start_time: (data.get("start_time") || "").toString(),
-    preferences: {
-      remote: data.get("pref_remote") === "on",
-      onsite: data.get("pref_onsite") === "on",
-      hybrid: data.get("pref_hybrid") === "on",
-    },
-    message: (data.get("message") || "").toString().trim(),
     accept_terms: accept
   };
 
