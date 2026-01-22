@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Form Test Site</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <h1>Formulaire de test</h1>
+      <p>Formulaire varié pour tester ton agent (Playwright + Gemini).</p>
+    </header>
+
+    <form id="testForm" class="card" novalidate>
+      <div class="grid">
+        <div class="field">
+          <label for="full_name">Full name *</label>
+          <input id="full_name" name="full_name" type="text" placeholder="Mohamed Amine Abdrrazek" required />
+          <small class="error" data-error-for="full_name"></small>
+        </div>
+
+        <div class="field">
+          <label for="email">Email *</label>
+          <input id="email" name="email" type="email" placeholder="mohamedamine.abdrrazek@supcom.tn" required />
+          <small class="error" data-error-for="email"></small>
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone *</label>
+          <input id="phone" name="phone" type="tel" placeholder="+21653197278" required />
+          <small class="error" data-error-for="phone"></small>
+        </div>
+
+        <div class="field">
+          <label for="city">City</label>
+          <input id="city" name="city" type="text" placeholder="Tunis" />
+        </div>
+
+        <div class="field">
+          <label for="birthday">Birthday</label>
+          <input id="birthday" name="birthday" type="date" />
+        </div>
+
+        <div class="field">
+          <label for="degree">Degree</label>
+          <select id="degree" name="degree">
+            <option value="">-- Choose --</option>
+            <option>Engineering</option>
+            <option>Master</option>
+            <option>Bachelor</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <section class="section">
+        <h2>Availability</h2>
+
+        <div class="field">
+          <span class="label">Preferred start time</span>
+          <div class="row">
+            <label><input type="radio" name="start_time" value="morning" /> Morning</label>
+            <label><input type="radio" name="start_time" value="afternoon" /> Afternoon</label>
+            <label><input type="radio" name="start_time" value="evening" /> Evening</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <span class="label">Preferences</span>
+          <div class="row">
+            <label><input type="checkbox" id="pref_remote" name="pref_remote" /> Remote</label>
+            <label><input type="checkbox" id="pref_onsite" name="pref_onsite" /> On-site</label>
+            <label><input type="checkbox" id="pref_hybrid" name="pref_hybrid" /> Hybrid</label>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Websites</h2>
+        <p class="muted">Ajoute plusieurs liens (LinkedIn, GitHub, Portfolio...).</p>
+
+        <div id="websitesWrap" class="stack">
+          <div class="field website-item">
+            <label for="website_1">Website 1</label>
+            <input id="website_1" name="websites[]" type="url" placeholder="https://github.com/..." />
+          </div>
+        </div>
+
+        <button type="button" id="addWebsite" class="btn secondary">+ Add another website</button>
+      </section>
+
+      <section class="section">
+        <h2>Message</h2>
+
+        <div class="field">
+          <label for="message">Short message</label>
+          <textarea id="message" name="message" rows="4" placeholder="Write something..."></textarea>
+        </div>
+
+        <div class="field">
+          <label>
+            <input id="accept_terms" name="accept_terms" type="checkbox" required />
+            I accept terms *
+          </label>
+          <small class="error" data-error-for="accept_terms"></small>
+        </div>
+      </section>
+
+      <div class="actions">
+        <button type="reset" class="btn secondary">Reset</button>
+        <button type="submit" class="btn">Submit</button>
+      </div>
+
+      <div id="result" class="result" aria-live="polite"></div>
+    </form>
+
+    <!-- ✅ SUCCESS MESSAGE -->
+    <div id="successMessage" class="success hidden" aria-live="polite">
+      ✅ Votre formulaire a été soumis avec succès !
+      <div style="margin-top:10px">
+        <button id="submitAnother" class="btn secondary" type="button">Submit another response</button>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <span>Hosted on GitHub Pages</span>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
