@@ -10,7 +10,7 @@ function setError(name, msg) {
 }
 
 function clearErrors() {
-  ["full_name","email","phone","accept_terms"].forEach(k => setError(k, ""));
+  ["full_name","email","phone"].forEach(k => setError(k, ""));
 }
 
 // Submit handler
@@ -23,14 +23,12 @@ form.addEventListener("submit", (e) => {
   const full_name = (data.get("full_name") || "").toString().trim();
   const email = (data.get("email") || "").toString().trim();
   const phone = (data.get("phone") || "").toString().trim();
-  const accept = data.get("accept_terms") === "on";
 
   let ok = true;
 
   if (!full_name) { setError("full_name", "Full name is required."); ok = false; }
   if (!email || !email.includes("@")) { setError("email", "Valid email is required."); ok = false; }
   if (!phone) { setError("phone", "Phone is required."); ok = false; }
-  if (!accept) { setError("accept_terms", "You must accept terms."); ok = false; }
 
   if (!ok) return;
 
@@ -39,10 +37,7 @@ form.addEventListener("submit", (e) => {
     full_name,
     email,
     phone,
-    city: (data.get("city") || "").toString().trim(),
-    degree: (data.get("degree") || "").toString().trim(),
-    birthday: (data.get("birthday") || "").toString().trim(),
-    accept_terms: accept
+    city: (data.get("city") || "").toString().trim()
   };
 
   // Show success message + hide form
